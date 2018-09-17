@@ -1,0 +1,284 @@
+
+# 1 "mcc_generated_files/LINDrivers/lin_app.c"
+
+# 13 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdint.h"
+typedef signed char int8_t;
+
+# 20
+typedef signed int int16_t;
+
+# 28
+typedef signed short long int int24_t;
+
+# 36
+typedef signed long int int32_t;
+
+# 43
+typedef unsigned char uint8_t;
+
+# 49
+typedef unsigned int uint16_t;
+
+# 56
+typedef unsigned short long int uint24_t;
+
+# 63
+typedef unsigned long int uint32_t;
+
+# 71
+typedef signed char int_least8_t;
+
+# 78
+typedef signed int int_least16_t;
+
+# 90
+typedef signed short long int int_least24_t;
+
+# 98
+typedef signed long int int_least32_t;
+
+# 105
+typedef unsigned char uint_least8_t;
+
+# 111
+typedef unsigned int uint_least16_t;
+
+# 121
+typedef unsigned short long int uint_least24_t;
+
+# 128
+typedef unsigned long int uint_least32_t;
+
+# 137
+typedef signed char int_fast8_t;
+
+# 144
+typedef signed int int_fast16_t;
+
+# 156
+typedef signed short long int int_fast24_t;
+
+# 164
+typedef signed long int int_fast32_t;
+
+# 171
+typedef unsigned char uint_fast8_t;
+
+# 177
+typedef unsigned int uint_fast16_t;
+
+# 187
+typedef unsigned short long int uint_fast24_t;
+
+# 194
+typedef unsigned long int uint_fast32_t;
+
+# 200
+typedef int32_t intmax_t;
+
+
+
+
+typedef uint32_t uintmax_t;
+
+
+
+
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+
+# 12 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdbool.h"
+typedef unsigned char bool;
+
+# 4 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\__size_t.h"
+typedef unsigned size_t;
+
+# 14 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+
+
+
+
+extern void * __builtin_memcpy(void *, const void *, size_t);
+#pragma intrinsic(__builtin_memcpy)
+
+# 36
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+
+# 46 "mcc_generated_files/LINDrivers/lin_master.h"
+typedef enum {
+LIN_IDLE,
+LIN_TX_IP,
+LIN_RX_IP,
+LIN_RX_RDY
+}lin_state_t;
+
+typedef enum {
+TRANSMIT,
+RECEIVE
+}lin_packet_type_t;
+
+typedef struct {
+uint8_t cmd;
+lin_packet_type_t type;
+uint8_t length;
+uint8_t timeout;
+uint8_t period;
+uint8_t* data;
+}lin_cmd_packet_t;
+
+typedef union {
+struct {
+uint8_t PID;
+uint8_t data[8];
+uint8_t checksum;
+uint8_t length;
+};
+uint8_t rawPacket[11];
+}lin_packet_t;
+
+typedef union {
+struct {
+uint8_t cmd;
+uint8_t rxLength;
+uint8_t data[8];
+uint8_t checksum;
+uint8_t timeout;
+};
+uint8_t rawPacket[12];
+}lin_rxpacket_t;
+
+typedef union {
+struct {
+unsigned ID0: 1;
+unsigned ID1: 1;
+unsigned ID2: 1;
+unsigned ID3: 1;
+unsigned ID4: 1;
+unsigned ID5: 1;
+unsigned P0: 1;
+unsigned P1: 1;
+};
+uint8_t rawPID;
+}lin_pid_t;
+
+
+
+void LIN_init(uint8_t tableLength, const lin_cmd_packet_t* const table, void (*processData)(void));
+
+void LIN_queuePacket(uint8_t cmd, uint8_t* data);
+
+bool LIN_receivePacket(void);
+
+void LIN_sendPacket(void);
+
+uint8_t LIN_getPacket(uint8_t* data);
+
+lin_state_t LIN_handler(void);
+
+uint8_t LIN_getChecksum(uint8_t length, uint8_t* data);
+
+uint8_t LIN_calcParity(uint8_t CMD);
+
+
+void LIN_startTimer(uint8_t timeout);
+
+void LIN_timerHandler(void);
+
+void LIN_setTimerHandler(void);
+
+void LIN_stopTimer(void);
+
+void LIN_startPeriod(void);
+
+void LIN_stopPeriod(void);
+
+void LIN_enableRx(void);
+
+void LIN_disableRx(void);
+
+void LIN_sendBreak(void);
+
+void LIN_sendPeriodicTx(void);
+
+# 47 "mcc_generated_files/LINDrivers/lin_app.h"
+typedef enum {
+UNLOCK = 0x00,
+RSSI = 0x01,
+LFRX = 0x02,
+SIGNAL = 0x03
+}lin_cmd_t;
+
+uint8_t UNLOCK_Data[1];
+uint8_t RSSI_Data[1];
+uint8_t LFRX_Data[8];
+uint8_t SIGNAL_Data[1];
+
+const lin_cmd_packet_t scheduleTable[] = {
+
+{UNLOCK, TRANSMIT, 1, 0, 100, UNLOCK_Data },
+{RSSI, TRANSMIT, 1, 0, 20, RSSI_Data },
+{LFRX, RECEIVE, 8, 100, 0, LFRX_Data },
+{SIGNAL, TRANSMIT, 1, 5, 20, SIGNAL_Data }
+};
+
+
+void LIN_Master_Initialize(void);
+
+void processLIN(void);
+
+# 43 "mcc_generated_files/LINDrivers/lin_app.c"
+void LIN_Master_Initialize(void){
+
+LIN_init((sizeof(scheduleTable)/sizeof(lin_cmd_packet_t)), scheduleTable, processLIN);
+
+}
+
+void processLIN(void){
+uint8_t tempRxData[8];
+uint8_t cmd;
+
+cmd = LIN_getPacket(tempRxData);
+switch(cmd){
+case UNLOCK:
+break;
+case RSSI:
+break;
+case LFRX:
+break;
+case SIGNAL:
+break;
+default:
+break;
+}
+}

@@ -1,0 +1,290 @@
+Version 3.2 HI-TECH Software Intermediate Code
+"59 mcc_generated_files/LINDrivers/lin_app.h
+[c E125 0 1 .. ]
+[n E125 . TRANSMIT RECEIVE  ]
+"58 mcc_generated_files/LINDrivers/lin_master.h
+[s S1 `uc 1 `E125 1 `uc 1 `uc 1 `uc 1 `*uc 1 ]
+[n S1 . cmd type length timeout period data ]
+"61 mcc_generated_files/LINDrivers/lin_app.h
+[c E212 0 1 2 3 .. ]
+[n E212 . UNLOCK RSSI LFRX SIGNAL  ]
+[v F172 `*CS1 ~T0 @X0 1 t ]
+[v F174 `(v ~T0 @X0 0 tf ]
+"104 mcc_generated_files/LINDrivers/lin_master.h
+[v _LIN_init `(v ~T0 @X0 0 ef3`uc`C*CS1`*F174 ]
+"70 mcc_generated_files/LINDrivers/lin_app.h
+[v _processLIN `(v ~T0 @X0 0 ef ]
+"112 mcc_generated_files/LINDrivers/lin_master.h
+[v _LIN_getPacket `(uc ~T0 @X0 0 ef1`*uc ]
+[; ;stdint.h: 13: typedef signed char int8_t;
+[; ;stdint.h: 20: typedef signed int int16_t;
+[; ;stdint.h: 28: typedef signed short long int int24_t;
+[; ;stdint.h: 36: typedef signed long int int32_t;
+[; ;stdint.h: 43: typedef unsigned char uint8_t;
+[; ;stdint.h: 49: typedef unsigned int uint16_t;
+[; ;stdint.h: 56: typedef unsigned short long int uint24_t;
+[; ;stdint.h: 63: typedef unsigned long int uint32_t;
+[; ;stdint.h: 71: typedef signed char int_least8_t;
+[; ;stdint.h: 78: typedef signed int int_least16_t;
+[; ;stdint.h: 90: typedef signed short long int int_least24_t;
+[; ;stdint.h: 98: typedef signed long int int_least32_t;
+[; ;stdint.h: 105: typedef unsigned char uint_least8_t;
+[; ;stdint.h: 111: typedef unsigned int uint_least16_t;
+[; ;stdint.h: 121: typedef unsigned short long int uint_least24_t;
+[; ;stdint.h: 128: typedef unsigned long int uint_least32_t;
+[; ;stdint.h: 137: typedef signed char int_fast8_t;
+[; ;stdint.h: 144: typedef signed int int_fast16_t;
+[; ;stdint.h: 156: typedef signed short long int int_fast24_t;
+[; ;stdint.h: 164: typedef signed long int int_fast32_t;
+[; ;stdint.h: 171: typedef unsigned char uint_fast8_t;
+[; ;stdint.h: 177: typedef unsigned int uint_fast16_t;
+[; ;stdint.h: 187: typedef unsigned short long int uint_fast24_t;
+[; ;stdint.h: 194: typedef unsigned long int uint_fast32_t;
+[; ;stdint.h: 200: typedef int32_t intmax_t;
+[; ;stdint.h: 205: typedef uint32_t uintmax_t;
+[; ;stdint.h: 210: typedef int16_t intptr_t;
+[; ;stdint.h: 215: typedef uint16_t uintptr_t;
+[; ;stdbool.h: 12: typedef unsigned char bool;
+[; ;__size_t.h: 4: typedef unsigned size_t;
+[; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
+[; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
+[; ;string.h: 16: extern void * memset(void *, int, size_t);
+[; ;string.h: 21: extern void * __builtin_memcpy(void *, const void *, size_t);
+[; ;string.h: 36: extern char * strcat(char *, const char *);
+[; ;string.h: 37: extern char * strcpy(char *, const char *);
+[; ;string.h: 38: extern char * strncat(char *, const char *, size_t);
+[; ;string.h: 39: extern char * strncpy(char *, const char *, size_t);
+[; ;string.h: 40: extern char * strdup(const char *);
+[; ;string.h: 41: extern char * strtok(char *, const char *);
+[; ;string.h: 44: extern int memcmp(const void *, const void *, size_t);
+[; ;string.h: 45: extern int strcmp(const char *, const char *);
+[; ;string.h: 46: extern int stricmp(const char *, const char *);
+[; ;string.h: 47: extern int strncmp(const char *, const char *, size_t);
+[; ;string.h: 48: extern int strnicmp(const char *, const char *, size_t);
+[; ;string.h: 49: extern void * memchr(const void *, int, size_t);
+[; ;string.h: 50: extern size_t strcspn(const char *, const char *);
+[; ;string.h: 51: extern char * strpbrk(const char *, const char *);
+[; ;string.h: 52: extern size_t strspn(const char *, const char *);
+[; ;string.h: 53: extern char * strstr(const char *, const char *);
+[; ;string.h: 54: extern char * stristr(const char *, const char *);
+[; ;string.h: 55: extern char * strerror(int);
+[; ;string.h: 56: extern size_t strlen(const char *);
+[; ;string.h: 57: extern char * strchr(const char *, int);
+[; ;string.h: 58: extern char * strichr(const char *, int);
+[; ;string.h: 59: extern char * strrchr(const char *, int);
+[; ;string.h: 60: extern char * strrichr(const char *, int);
+[; ;lin_master.h: 46: typedef enum {
+[; ;lin_master.h: 47: LIN_IDLE,
+[; ;lin_master.h: 48: LIN_TX_IP,
+[; ;lin_master.h: 49: LIN_RX_IP,
+[; ;lin_master.h: 50: LIN_RX_RDY
+[; ;lin_master.h: 51: }lin_state_t;
+[; ;lin_master.h: 53: typedef enum {
+[; ;lin_master.h: 54: TRANSMIT,
+[; ;lin_master.h: 55: RECEIVE
+[; ;lin_master.h: 56: }lin_packet_type_t;
+[; ;lin_master.h: 58: typedef struct {
+[; ;lin_master.h: 59: uint8_t cmd;
+[; ;lin_master.h: 60: lin_packet_type_t type;
+[; ;lin_master.h: 61: uint8_t length;
+[; ;lin_master.h: 62: uint8_t timeout;
+[; ;lin_master.h: 63: uint8_t period;
+[; ;lin_master.h: 64: uint8_t* data;
+[; ;lin_master.h: 65: }lin_cmd_packet_t;
+[; ;lin_master.h: 67: typedef union {
+[; ;lin_master.h: 68: struct {
+[; ;lin_master.h: 69: uint8_t PID;
+[; ;lin_master.h: 70: uint8_t data[8];
+[; ;lin_master.h: 71: uint8_t checksum;
+[; ;lin_master.h: 72: uint8_t length;
+[; ;lin_master.h: 73: };
+[; ;lin_master.h: 74: uint8_t rawPacket[11];
+[; ;lin_master.h: 75: }lin_packet_t;
+[; ;lin_master.h: 77: typedef union {
+[; ;lin_master.h: 78: struct {
+[; ;lin_master.h: 79: uint8_t cmd;
+[; ;lin_master.h: 80: uint8_t rxLength;
+[; ;lin_master.h: 81: uint8_t data[8];
+[; ;lin_master.h: 82: uint8_t checksum;
+[; ;lin_master.h: 83: uint8_t timeout;
+[; ;lin_master.h: 84: };
+[; ;lin_master.h: 85: uint8_t rawPacket[12];
+[; ;lin_master.h: 86: }lin_rxpacket_t;
+[; ;lin_master.h: 88: typedef union {
+[; ;lin_master.h: 89: struct {
+[; ;lin_master.h: 90: unsigned ID0: 1;
+[; ;lin_master.h: 91: unsigned ID1: 1;
+[; ;lin_master.h: 92: unsigned ID2: 1;
+[; ;lin_master.h: 93: unsigned ID3: 1;
+[; ;lin_master.h: 94: unsigned ID4: 1;
+[; ;lin_master.h: 95: unsigned ID5: 1;
+[; ;lin_master.h: 96: unsigned P0: 1;
+[; ;lin_master.h: 97: unsigned P1: 1;
+[; ;lin_master.h: 98: };
+[; ;lin_master.h: 99: uint8_t rawPID;
+[; ;lin_master.h: 100: }lin_pid_t;
+[; ;lin_master.h: 104: void LIN_init(uint8_t tableLength, const lin_cmd_packet_t* const table, void (*processData)(void));
+[; ;lin_master.h: 106: void LIN_queuePacket(uint8_t cmd, uint8_t* data);
+[; ;lin_master.h: 108: bool LIN_receivePacket(void);
+[; ;lin_master.h: 110: void LIN_sendPacket(void);
+[; ;lin_master.h: 112: uint8_t LIN_getPacket(uint8_t* data);
+[; ;lin_master.h: 114: lin_state_t LIN_handler(void);
+[; ;lin_master.h: 116: uint8_t LIN_getChecksum(uint8_t length, uint8_t* data);
+[; ;lin_master.h: 118: uint8_t LIN_calcParity(uint8_t CMD);
+[; ;lin_master.h: 121: void LIN_startTimer(uint8_t timeout);
+[; ;lin_master.h: 123: void LIN_timerHandler(void);
+[; ;lin_master.h: 125: void LIN_setTimerHandler(void);
+[; ;lin_master.h: 127: void LIN_stopTimer(void);
+[; ;lin_master.h: 129: void LIN_startPeriod(void);
+[; ;lin_master.h: 131: void LIN_stopPeriod(void);
+[; ;lin_master.h: 133: void LIN_enableRx(void);
+[; ;lin_master.h: 135: void LIN_disableRx(void);
+[; ;lin_master.h: 137: void LIN_sendBreak(void);
+[; ;lin_master.h: 139: void LIN_sendPeriodicTx(void);
+[; ;lin_app.h: 47: typedef enum {
+[; ;lin_app.h: 48: UNLOCK = 0x00,
+[; ;lin_app.h: 49: RSSI = 0x01,
+[; ;lin_app.h: 50: LFRX = 0x02,
+[; ;lin_app.h: 51: SIGNAL = 0x03
+[; ;lin_app.h: 52: }lin_cmd_t;
+"54 mcc_generated_files/LINDrivers/lin_app.h
+[v _UNLOCK_Data `uc ~T0 @X0 -> -> 1 `i `ux e ]
+[; ;lin_app.h: 54: uint8_t UNLOCK_Data[1];
+"55
+[v _RSSI_Data `uc ~T0 @X0 -> -> 1 `i `ux e ]
+[; ;lin_app.h: 55: uint8_t RSSI_Data[1];
+"56
+[v _LFRX_Data `uc ~T0 @X0 -> 8 `i e ]
+[; ;lin_app.h: 56: uint8_t LFRX_Data[8];
+"57
+[v _SIGNAL_Data `uc ~T0 @X0 -> -> 1 `i `ux e ]
+[; ;lin_app.h: 57: uint8_t SIGNAL_Data[1];
+"59
+[v _scheduleTable `CS1 ~T0 @X0 -> 0 `x e ]
+[i _scheduleTable
+:U ..
+:U ..
+"61
+-> . `E212 0 `uc
+. `E125 0
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 100 `i `uc
+&U _UNLOCK_Data
+..
+:U ..
+"62
+-> . `E212 1 `uc
+. `E125 0
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 20 `i `uc
+&U _RSSI_Data
+..
+:U ..
+"63
+-> . `E212 2 `uc
+. `E125 1
+-> -> 8 `i `uc
+-> -> 100 `i `uc
+-> -> 0 `i `uc
+&U _LFRX_Data
+..
+:U ..
+"64
+-> . `E212 3 `uc
+. `E125 0
+-> -> 1 `i `uc
+-> -> 5 `i `uc
+-> -> 20 `i `uc
+&U _SIGNAL_Data
+..
+..
+]
+[; ;lin_app.h: 59: const lin_cmd_packet_t scheduleTable[] = {
+[; ;lin_app.h: 61: {UNLOCK, TRANSMIT, 1, 0, 100, UNLOCK_Data },
+[; ;lin_app.h: 62: {RSSI, TRANSMIT, 1, 0, 20, RSSI_Data },
+[; ;lin_app.h: 63: {LFRX, RECEIVE, 8, 100, 0, LFRX_Data },
+[; ;lin_app.h: 64: {SIGNAL, TRANSMIT, 1, 5, 20, SIGNAL_Data }
+[; ;lin_app.h: 65: };
+[; ;lin_app.h: 68: void LIN_Master_Initialize(void);
+[; ;lin_app.h: 70: void processLIN(void);
+"43 mcc_generated_files/LINDrivers/lin_app.c
+[v _LIN_Master_Initialize `(v ~T0 @X0 1 ef ]
+{
+[; ;lin_app.c: 43: void LIN_Master_Initialize(void){
+[e :U _LIN_Master_Initialize ]
+[f ]
+[; ;lin_app.c: 45: LIN_init((sizeof(scheduleTable)/sizeof(lin_cmd_packet_t)), scheduleTable, processLIN);
+"45
+[e ( _LIN_init (3 , , -> / -> # _scheduleTable `ui -> # `S1 `ui `uc -> &U _scheduleTable `C*CS1 &U _processLIN ]
+[; ;lin_app.c: 47: }
+"47
+[e :UE 8 ]
+}
+"49
+[v _processLIN `(v ~T0 @X0 1 ef ]
+{
+[; ;lin_app.c: 49: void processLIN(void){
+[e :U _processLIN ]
+[f ]
+"50
+[v _tempRxData `uc ~T0 @X0 -> 8 `i a ]
+"51
+[v _cmd `uc ~T0 @X0 1 a ]
+[; ;lin_app.c: 50: uint8_t tempRxData[8];
+[; ;lin_app.c: 51: uint8_t cmd;
+[; ;lin_app.c: 53: cmd = LIN_getPacket(tempRxData);
+"53
+[e = _cmd ( _LIN_getPacket (1 &U _tempRxData ]
+[; ;lin_app.c: 54: switch(cmd){
+"54
+[e $U 11  ]
+{
+[; ;lin_app.c: 55: case UNLOCK:
+"55
+[e :U 12 ]
+[; ;lin_app.c: 56: break;
+"56
+[e $U 10  ]
+[; ;lin_app.c: 57: case RSSI:
+"57
+[e :U 13 ]
+[; ;lin_app.c: 58: break;
+"58
+[e $U 10  ]
+[; ;lin_app.c: 59: case LFRX:
+"59
+[e :U 14 ]
+[; ;lin_app.c: 60: break;
+"60
+[e $U 10  ]
+[; ;lin_app.c: 61: case SIGNAL:
+"61
+[e :U 15 ]
+[; ;lin_app.c: 62: break;
+"62
+[e $U 10  ]
+[; ;lin_app.c: 63: default:
+"63
+[e :U 16 ]
+[; ;lin_app.c: 64: break;
+"64
+[e $U 10  ]
+"65
+}
+[; ;lin_app.c: 65: }
+[e $U 10  ]
+"54
+[e :U 11 ]
+[e [\ _cmd , $ -> . `E212 0 `uc 12
+ , $ -> . `E212 1 `uc 13
+ , $ -> . `E212 2 `uc 14
+ , $ -> . `E212 3 `uc 15
+ 16 ]
+"65
+[e :U 10 ]
+[; ;lin_app.c: 66: }
+"66
+[e :UE 9 ]
+}
